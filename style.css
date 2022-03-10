@@ -13,6 +13,7 @@
   
   body {
     margin: 0;
+    padding: 0;
     background-color: #fff;
     transition: .4s;
   }
@@ -23,8 +24,8 @@
 
   .board {
     position: absolute;
-    left: 40vw;
-    top: 30vh;
+    left: calc(50% - 300px / 2);
+    top: calc(50% - 300px / 2);
     width: 300px;
     height: 300px;
     display: grid;
