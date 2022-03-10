@@ -1,0 +1,252 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+    --primary-color: #10101e;
+    --secondary-color: #fff;
+    --cellX-borderRadius: 5px;
+    --cell-borderRadius: 1px;
+  }
+  
+  body {
+    margin: 0;
+    background-color: #fff;
+    transition: .4s;
+  }
+
+  body.dark {
+      background-color: #10101e;
+  }
+
+  .board {
+    position: absolute;
+    left: 40vw;
+    top: 30vh;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, .3);
+    border-radius: 20px;
+  }
+  
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: .4s;
+    border-radius: var(--cell-borderRadius);
+  }
+
+  body.dark .cell {
+    border: 1px solid var(--secondary-color);
+  }
+  
+   .cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
+    border-top: none;
+    transition: .4s;
+  }
+  
+  .cell:nth-child(3n + 1) {
+    border-left: none;
+    transition: .4s;
+  }
+  
+  .cell:nth-child(3n + 3) {
+    border-right: none;
+    transition: .4s;
+  }
+  
+  .cell:last-child, .cell:nth-child(8), .cell:nth-child(7) {
+    border-bottom: none;
+    transition: .4s;
+  }
+
+  body.dark .cell:first-child, body.dark .cell:nth-child(2), body.dark .cell:nth-child(3) {
+    border-top: none;
+  }
+  
+  body.dark .cell:nth-child(3n + 1) {
+    border-left: none;
+  }
+  
+  body.dark .cell:nth-child(3n + 3) {
+    border-right: none;
+  }
+  
+  body.dark .cell:last-child, body.dark .cell:nth-child(8), body.dark .cell:nth-child(7) {
+    border-bottom: none;
+  }
+  
+  .cell.x, .cell.circle {
+    cursor: not-allowed;
+  }
+  
+  .cell.x::before, .cell.x::after, .cell.circle::before {
+    background-color: var(--primary-color);
+    transition: .4s;
+  }
+
+  body.dark .cell.x::before, body.dark .cell.x::after, body.dark .cell.circle::before {
+    background-color: var(--secondary-color);
+  }
+  
+  .board.x .cell:not(.x):not(.circle):hover::before, .board.x .cell:not(.x):not(.circle):hover::after, .board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: lightgrey;
+    transition: .4s;
+    border-radius: var(--cellX-borderRadius);
+  }
+
+  body.dark .board.x .cell:not(.x):not(.circle):hover::before, body.dark .board.x .cell:not(.x):not(.circle):hover::after, body.dark .board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: darkgrey;
+  }
+  
+  .cell.x::before, .cell.x::after, .board.x .cell:not(.x):not(.circle):hover::before, .board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    border-radius: var(--cellX-borderRadius);
+  }
+  
+  .cell.x::before, .board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+  }
+  
+  .cell.x::after, .board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+  }
+  
+  .cell.circle::before, .cell.circle::after, .board.circle .cell:not(.x):not(.circle):hover::before, .board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .cell.circle::before, .board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+  }
+  
+  .cell.circle::after, .board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: var(--secondary-color);
+    transition: .4s;
+  }
+
+  body.dark .cell.circle::after, body.dark .board.circle .cell:not(.x):not(.circle):hover::after {
+    background-color: var(--primary-color);
+  }
+  
+  .winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+    font-family: sans-serif;
+    transition: .4s;
+  }
+
+  body.dark .winning-message {
+    background-color: rgba(155, 155, 155, 0.9);
+    color: var(--primary-color);
+  }
+  
+  .winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: .25em .5em;
+    cursor: pointer;
+    transition: .4s;
+  }
+
+  body.dark .winning-message button {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    transition: .4s;
+  }
+  
+  .winning-message button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+    transition: .4s;
+  }
+
+  body.dark .winning-message button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+  
+  .winning-message.show {
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: 0.4s;
+  }
+
+  .toggleClass {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-family: sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: .4s ease-in-out;
+  }
+  
+  .toggleClass:before {
+    position: absolute;
+    content: '🌑';
+    right: 0.85px;
+    bottom: 9.5%;
+    transition: 0.5s;
+  }
+
+  body.dark .toggleClass {
+    background-color: var(--secondary-color);
+    color: #10101E;
+    font-size: 17px;
+  }
+
+  body.dark .toggleClass:before {
+    font-size: 20.5px;
+    position: absolute;
+    content: '☀️';
+    right: 0.85px;
+    bottom: 9.5%;
+ }
