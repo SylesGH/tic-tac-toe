@@ -3,6 +3,9 @@
   }
   
   :root {
+    --dark-mode-button-center: 131.81px;
+    --restart-button-center: 93.36px ;
+
     --cell-size: 100px;
     --mark-size: calc(var(--cell-size) * .9);
     --primary-color: #10101e;
@@ -41,7 +44,7 @@
   .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    border: 1px solid var(--primary-color);
+    border: 0.1px solid var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,6 +216,37 @@
     transition: 0.4s;
   }
 
+  .restart {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #fff;
+    color: #10101e;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    left: calc(50% - var(--restart-button-center) / 2 - 1%);
+    bottom: 15%;
+    transition: 0.4s;
+  }
+
+  body.dark .restart {
+    background-color: #0a0a13;
+    color: #fff;
+    border: 1px solid white;
+  }
+
+  .restart:hover {
+    background-color: #10101e;
+    color: #fff;
+  }
+
+  .restart::before {
+    content: 'Restart Game';
+  }
+
   .toggleClass {
     font-size: 20px;
     background-color: var(--primary-color);
@@ -227,14 +261,13 @@
   .toggleClass:before {
     display: flex;
     position: absolute;
-    left: calc(50% - 118.26px / 2);
+    left: calc(50% - var(--dark-mode-button-center) / 2);
     top: calc(5%);
     content: 'Dark Mode ';
     transition: 0.3s;
     border: 2px solid #10101e;
     border-radius: 10px;
-    padding: 1%;
-    background-color: rgb(240, 240, 240);
+    padding: 15px;
   }
 
   body.dark .toggleClass {
@@ -246,7 +279,7 @@
   body.dark .toggleClass:before {
     display: flex;
     position: absolute;
-    left: calc(50% - 119.41px / 2);
+    left: calc(50% - var(--dark-mode-button-center) / 2);
     content: 'Light Mode';
     border-color: #fff;
     background-color: #0a0a13;
