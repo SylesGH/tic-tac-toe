@@ -213,41 +213,32 @@
     transition: 0.4s;
   }
 
-  .toggleClass {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    width: 30px;
-    height: 30px;
+.toggleClass {
     font-size: 20px;
-    border-radius: 50%;
     background-color: var(--primary-color);
-    color: #fff;
+    color: #10101e;
     font-family: sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
-    transition: .4s ease-in-out;
+    transition: 0.3s ease-in-out;
   }
   
   .toggleClass:before {
+    display: flex;
     position: absolute;
-    content: '🌑';
-    right: 0.85px;
-    bottom: 9.5%;
-    transition: 0.5s;
+    left: calc(50% - 97.81px / 2);
+    top: calc(5%);
+    content: 'Dark Mode ';
+    transition: 0.3s;
   }
 
   body.dark .toggleClass {
     background-color: var(--secondary-color);
-    color: #10101E;
-    font-size: 17px;
+    color: #fff;
+    font-size: 20px;
   }
 
   body.dark .toggleClass:before {
-    font-size: 20.5px;
-    position: absolute;
-    content: '☀️';
-    right: 0.85px;
-    bottom: 9.5%;
+    content: 'Light Mode';
  }
