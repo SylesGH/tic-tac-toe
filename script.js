@@ -92,3 +92,11 @@ function toggleClass() {
     const body = document.querySelector('body');
     body.classList.toggle('dark');
 }
+
+function restartGame() {
+  if (window.confirm('Are you sure?')) {
+    startGame();
+  } else {
+    return;
+  }
+}
