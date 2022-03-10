@@ -213,7 +213,7 @@
     transition: 0.4s;
   }
 
-.toggleClass {
+  .toggleClass {
     font-size: 20px;
     background-color: var(--primary-color);
     color: #10101e;
@@ -227,10 +227,14 @@
   .toggleClass:before {
     display: flex;
     position: absolute;
-    left: calc(50% - 97.81px / 2);
+    left: calc(50% - 118.26px / 2);
     top: calc(5%);
     content: 'Dark Mode ';
     transition: 0.3s;
+    border: 2px solid #10101e;
+    border-radius: 10px;
+    padding: 1%;
+    background-color: rgb(240, 240, 240);
   }
 
   body.dark .toggleClass {
@@ -240,5 +244,10 @@
   }
 
   body.dark .toggleClass:before {
+    display: flex;
+    position: absolute;
+    left: calc(50% - 119.41px / 2);
     content: 'Light Mode';
+    border-color: #fff;
+    background-color: #0a0a13;
  }
