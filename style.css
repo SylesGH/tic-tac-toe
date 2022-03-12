@@ -348,6 +348,7 @@
 
   .playerOneInput:focus, .playerTwoInput:focus {
     background-color: #10101e;
+    color: #fff;
   }
 
   .playerOneInput:hover, .playerTwoInput:hover, .startGame:hover {
