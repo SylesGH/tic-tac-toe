@@ -15,7 +15,7 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-let circleTurn
+let circleTurn;
 
 startGame()
 
@@ -94,9 +94,65 @@ function toggleClass() {
 }
 
 function restartGame() {
-  if (window.confirm('Are you sure?')) {
-    startGame();
-  } else {
-    return;
+    if (window.confirm('Are you sure?')) {
+      startGame();
+    } else {
+      return;
+    }
+}
+
+function startScreen() {
+  if (playerOneInput.value == "") {
+    playerOneInputReq.innerText = `This field is required`
+    setTimeout(() => {
+      playerOneInputReq.innerText = ``
+    }, 5000);
   }
+
+  if (playerTwoInput.value == "") {
+    playerTwoInputReq.innerText = `This field is required`
+    setTimeout(() => {
+      playerTwoInputReq.innerText = ``
+    }, 5000);
+  }
+  
+  if (playerOneInput.value !== "" && playerTwoInput.value !== "") {
+    const startScreen = document.getElementById("startScreen")
+    startScreen.classList.toggle('show')
+  }
+}
+
+const playerOneInputReq = document.getElementById("playerOneInputReq")
+const playerTwoInputReq = document.getElementById("playerTwoInputReq")
+const playerOneScoreHTML = document.getElementById("playerOneScore")
+const playerTwoScoreHTML = document.getElementById("playerTwoScore")
+const playerOneHTML = document.getElementById("playerOne")
+const playerTwoHTML = document.getElementById("playerTwo")
+const playerOneInput = document.getElementById("playerOneInput")
+const playerTwoInput = document.getElementById("playerTwoInput")
+
+var scoreX = 0;
+var scoreO = 0;
+
+playerOneScoreHTML.innerText = scoreX
+playerTwoScoreHTML.innerText = scoreO
+
+function playerNameUpdate() {
+  playerOneHTML.innerText = playerOneInput.value.toUpperCase()
+  playerTwoHTML.innerText = playerTwoInput.value.toUpperCase()
+}
+
+function increasePoints() {
+  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
+
+  if (currentClass == X_CLASS) {
+    scoreX = scoreX + 1;
+  } else {
+    scoreO = scoreO + 1;
+  }
+}
+
+function increasePointsUpdate() {
+  playerOneScoreHTML.innerText = scoreX;
+  playerTwoScoreHTML.innerText = scoreO;
 }
