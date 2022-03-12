@@ -1,5 +1,9 @@
 *, *::after, *::before {
     box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
   
   :root {
@@ -14,23 +18,29 @@
     --cell-borderRadius: 1px;
   }
   
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     margin: 0;
     padding: 0;
     background-color: #fff;
     transition: .4s;
+    text-align: center;
   }
 
   body.dark {
       background-color: #10101e;
+      transition: .4s;
   }
 
   .board {
     position: absolute;
     left: calc(50% - 300px / 2);
     top: calc(50% - 300px / 2);
-    width: 300px;
-    height: 300px;
+    width: calc(var(--cell-size) * 3);
+    height: calc(var(--cell-size) * 3);
     display: grid;
     justify-content: center;
     align-content: center;
@@ -243,13 +253,125 @@
     color: #fff;
   }
 
-  .restart::before {
-    content: 'Restart Game';
+  body.dark .restart:hover {
+    background-color: #fff;
+    color: #10101e;
+  }
+
+  .scoreboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 300px;
+    height: 50px;
+    font-family: sans-serif;
+    position: absolute;
+    left: calc(50% - 300px / 2);
+    top: 19%;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .1);
+    border-radius: 10px;
+  }
+
+  .playerOne, .playerTwo {
+    padding: 5px 0 0 0;
+  }
+
+  .startScreen.show {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .startScreen {
+    display: none;
+  }
+  
+  .startGame {
+    height: 40px;
+    width: 150px;
+    position: absolute;
+    left: calc(50% - 150px / 2);
+    top: 70%;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #10101e;
+  }
+
+  .startGame:hover {
+    background-color: #10101e;
+    color: #fff;
+  }
+
+  .name {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    position: absolute;
+    left: calc(50% - 300px / 2);
+  }
+
+  .username {
+    height: 40px;
+    width: 300px;
+    margin: 0 0 20px 0;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+
+  .playerOneInput {
+    margin: 0 0 40px 0;
+  }
+
+  .playerTwoInput {
+    margin: 0 0 40px 0;
+  }
+
+  .playerOneInputReq, .playerTwoInputReq {
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 0;
+    position: relative;
+    bottom: 200%;
+    color: red;
+  }
+
+  .scoreboard, .startScreen.show, .playerOneInput, .playerTwoInput, .startGame {
+    transition: 0.5s;
+  }
+
+  .playerOneInput:focus, .playerTwoInput:focus {
+    background-color: #10101e;
+  }
+
+  .playerOneInput:hover, .playerTwoInput:hover, .startGame:hover {
+    background-color: #10101e;
+    color: #fff;
+  }
+
+  body.dark .scoreboard, body.dark .startScreen.show, body.dark .playerOneInput, body.dark .playerTwoInput, body.dark .startGame {
+    background-color: #10101e;
+    color: #fff;
+  }
+
+  body.dark .playerOneInput:hover, body.dark .playerTwoInput:hover, body.dark .startGame:hover {
+    background-color: #fff;
+    color: #10101e;
+  }
+
+  .sec-1, .sec-2 {
+    transition: .5s;
   }
 
   .toggleClass {
     font-size: 20px;
-    background-color: var(--primary-color);
+    background-color: #fff;
     color: #10101e;
     font-family: sans-serif;
     cursor: pointer;
@@ -271,7 +393,7 @@
   }
 
   body.dark .toggleClass {
-    background-color: var(--secondary-color);
+    background-color: #10101e;
     color: #fff;
     font-size: 20px;
   }
@@ -282,5 +404,4 @@
     left: calc(50% - var(--dark-mode-button-center) / 2);
     content: 'Light Mode';
     border-color: #fff;
-    background-color: #0a0a13;
  }
