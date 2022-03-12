@@ -6,25 +6,46 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
+  <script src="https://kit.fontawesome.com/65a220e4e7.js" crossorigin="anonymous"></script>
   <title>Tic-Tac-Toe</title>
 </head>
 <body class="">
-    <div class="toggleClass" onclick="toggleClass()"></div>
-        <div class="board" id="board">
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
+    <section id="sec-2">
+        <div class="toggleClass" onclick="toggleClass()" id="toggleClass"></div>
+            <div class="scoreboard">
+                <div class="playerOne" id="playerOne">Player One</div>
+                <div class="playerTwo" id="playerTwo">Player Two</div>
+                <div class="playerOneScore" id="playerOneScore">0</div>
+                <div class="playerTwoScore" id="playerTwoScore">0</div>
+            </div>
+            <div class="board" id="board">
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+            </div>
+                <input value="Restart Game" type="submit" onclick="restartGame()" class="restart"></input>
+            <div class="winning-message" id="winningMessage">
+                <div data-winning-message-text></div>
+                <button id="restartButton" onclick="increasePoints(), increasePointsUpdate()">Restart</button>
+                
+            </div>
+    </section>
+    <section id="sec-1" class="sec-1">
+        <div class="startScreen show" id="startScreen">
+            <div class="name">
+                <input type="username" placeholder="Player One (X)" class="username playerOneInput" id="playerOneInput" maxlength="10" autocomplete="false">
+                <p id="playerOneInputReq" class="playerOneInputReq"></p>
+                <input type="username" placeholder="Player Two (O)" class="username playerTwoInput" id="playerTwoInput" maxlength="10" autocomplete="false">
+                <p id="playerTwoInputReq" class="playerTwoInputReq"></p>
+            </div>
+            <button onclick="startScreen(), playerNameUpdate()" class="startGame">Start</button>
         </div>
-            <input value="Restart Game" type="submit" onclick="restartGame()" class="restart"></input>
-        <div class="winning-message" id="winningMessage">
-            <div data-winning-message-text></div>
-            <button id="restartButton">Restart</button>
-        </div>
+    </section>
 </body>
 </html>
