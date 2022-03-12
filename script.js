@@ -1,3 +1,15 @@
+const playerOneInputReq = document.getElementById("playerOneInputReq")
+const playerTwoInputReq = document.getElementById("playerTwoInputReq")
+const playerOneScoreHTML = document.getElementById("playerOneScore")
+const playerTwoScoreHTML = document.getElementById("playerTwoScore")
+const playerOneHTML = document.getElementById("playerOne")
+const playerTwoHTML = document.getElementById("playerTwo")
+const playerOneInput = document.getElementById("playerOneInput")
+const playerTwoInput = document.getElementById("playerTwoInput")
+
+var scoreX = 0;
+var scoreO = 0;
+
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const WINNING_COMBINATIONS = [
@@ -51,7 +63,7 @@ function endGame(draw) {
   if (draw) {
     winningMessageTextElement.innerText = 'Draw!'
   } else {
-    winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
+    winningMessageTextElement.innerText = `${circleTurn ? playerTwoInput.value.charAt(0).toUpperCase() + playerTwoInput.value.slice(1) : playerOneInput.value.charAt(0).toUpperCase() + playerOneInput.value.slice(1)} Wins!`
   }
   winningMessageElement.classList.add('show')
 }
@@ -122,18 +134,6 @@ function startScreen() {
   }
 }
 
-const playerOneInputReq = document.getElementById("playerOneInputReq")
-const playerTwoInputReq = document.getElementById("playerTwoInputReq")
-const playerOneScoreHTML = document.getElementById("playerOneScore")
-const playerTwoScoreHTML = document.getElementById("playerTwoScore")
-const playerOneHTML = document.getElementById("playerOne")
-const playerTwoHTML = document.getElementById("playerTwo")
-const playerOneInput = document.getElementById("playerOneInput")
-const playerTwoInput = document.getElementById("playerTwoInput")
-
-var scoreX = 0;
-var scoreO = 0;
-
 playerOneScoreHTML.innerText = scoreX
 playerTwoScoreHTML.innerText = scoreO
 
@@ -144,11 +144,12 @@ function playerNameUpdate() {
 
 function increasePoints() {
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
-
-  if (currentClass == X_CLASS) {
-    scoreX = scoreX + 1;
-  } else {
-    scoreO = scoreO + 1;
+  if (isDraw() == false) {
+    if (currentClass == X_CLASS) {
+      scoreX = scoreX + 1;
+    } else {
+      scoreO = scoreO + 1;
+    }
   }
 }
 
