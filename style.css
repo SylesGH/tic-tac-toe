@@ -181,7 +181,7 @@
     color: white;
     font-size: 5rem;
     flex-direction: column;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     transition: .4s;
   }
 
@@ -266,7 +266,7 @@
     grid-template-columns: repeat(2, 1fr);
     width: 300px;
     height: 50px;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     position: absolute;
     left: calc(50% - 300px / 2);
     top: 19%;
@@ -340,7 +340,7 @@
   }
 
   .playerOneInputReq, .playerTwoInputReq {
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     margin: 0;
     position: relative;
@@ -380,7 +380,7 @@
     font-size: 20px;
     background-color: #fff;
     color: #10101e;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
