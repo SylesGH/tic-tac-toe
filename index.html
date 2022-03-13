@@ -32,16 +32,15 @@
                 <input value="Restart Game" type="submit" onclick="restartGame()" class="restart"></input>
             <div class="winning-message" id="winningMessage">
                 <div data-winning-message-text></div>
-                <button id="restartButton" onclick="increasePoints(), increasePointsUpdate()">Restart</button>
-                
+                <button id="restartButton" onclick="increasePoints()">Restart</button>
             </div>
     </section>
     <section id="sec-1" class="sec-1">
         <div class="startScreen show" id="startScreen">
             <div class="name">
-                <input type="username" placeholder="Player One (X)" class="username playerOneInput" id="playerOneInput" maxlength="10" autocomplete="false">
+                <input type="secondPlayer" placeholder="Player One (X)" class="username playerOneInput" id="playerOneInput" maxlength="10" autocomplete="false">
                 <p id="playerOneInputReq" class="playerOneInputReq"></p>
-                <input type="username" placeholder="Player Two (O)" class="username playerTwoInput" id="playerTwoInput" maxlength="10" autocomplete="false">
+                <input type="firstPlayer" placeholder="Player Two (O)" class="username playerTwoInput" id="playerTwoInput" maxlength="10" autocomplete="false">
                 <p id="playerTwoInputReq" class="playerTwoInputReq"></p>
             </div>
             <button onclick="startScreen(), playerNameUpdate()" class="startGame">Start</button>
