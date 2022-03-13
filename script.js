@@ -151,9 +151,6 @@ function increasePoints() {
       scoreO = scoreO + 1;
     }
   }
-}
-
-function increasePointsUpdate() {
   playerOneScoreHTML.innerText = scoreX;
   playerTwoScoreHTML.innerText = scoreO;
 }
