@@ -276,6 +276,7 @@
   }
 
   .startScreen.show {
+    visibility: visible;
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -289,6 +290,7 @@
   }
   
   .startScreen {
+    visibility: hidden;
     display: none;
   }
   
@@ -302,6 +304,7 @@
     border-radius: 10px;
     background-color: #fff;
     color: #10101e;
+    cursor: pointer;
   }
 
   .startGame:hover {
