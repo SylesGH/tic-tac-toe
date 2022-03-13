@@ -154,3 +154,9 @@ function increasePoints() {
   playerOneScoreHTML.innerText = scoreX;
   playerTwoScoreHTML.innerText = scoreO;
 }
+
+document.addEventListener('keyup', (event) => {
+  if (event.ctrlKey && event.shiftKey && event.which == 65) {
+    toggleClass();
+  }
+}, false);
