@@ -6,6 +6,9 @@ const playerOneHTML = document.getElementById("playerOne")
 const playerTwoHTML = document.getElementById("playerTwo")
 const playerOneInput = document.getElementById("playerOneInput")
 const playerTwoInput = document.getElementById("playerTwoInput")
+const toggleClassButton = document.getElementById('toggleClass')
+const restartGameButton = document.getElementById('restart')
+const turn = document.getElementById("turn")
 
 var scoreX = 0;
 var scoreO = 0;
@@ -56,14 +59,21 @@ function handleClick(e) {
   } else {
     swapTurns()
     setBoardHoverClass()
+    turnDisplay()
   }
 }
 
 function endGame(draw) {
   if (draw) {
     winningMessageTextElement.innerText = 'Draw!'
+    turnDisplay()
+    increasePoints()
+    turnWaitDisplay(100)
   } else {
     winningMessageTextElement.innerText = `${circleTurn ? playerTwoInput.value.charAt(0).toUpperCase() + playerTwoInput.value.slice(1) : playerOneInput.value.charAt(0).toUpperCase() + playerOneInput.value.slice(1)} Wins!`
+    turnDisplay()
+    increasePoints()
+    turnWaitDisplay(100)
   }
   winningMessageElement.classList.add('show')
 }
@@ -101,16 +111,46 @@ function checkWin(currentClass) {
 }
 
 function toggleClass() {
-    const body = document.querySelector('body');
-    body.classList.toggle('dark');
+  const body = document.querySelector('body');
+  body.classList.toggle('dark');
 }
 
+/* toggleClassButton.addEventListener("touchstart", () => {
+  const body = document.querySelector('body');
+  body.classList.toggle('dark');
+}) */
+
 function restartGame() {
-    if (window.confirm('Are you sure?')) {
-      startGame();
-    } else {
-      return;
-    }
+  if (window.confirm('Are you sure?')) {
+    startGame();
+    scoreO = 0;
+    scoreX = 0;
+    playerOneScoreHTML.innerText = scoreX;
+    playerTwoScoreHTML.innerText = scoreO;
+  } else {
+    return;
+  }
+}
+
+/* restartGameButton.addEventListener('touchstart', () => {
+  if (window.confirm('Are you sure?')) {
+    startGame();
+    scoreO, scoreX = 0
+    playerOneScoreHTML.innerText = scoreX;
+    playerTwoScoreHTML.innerText = scoreO;
+  } else {
+    return;
+  }
+}) */
+
+function clearBoard() {
+  if (window.confirm('Are you sure?')) {
+    startGame();
+    playerOneScoreHTML.innerText = scoreX;
+    playerTwoScoreHTML.innerText = scoreO;
+  } else {
+    return;
+  }
 }
 
 function startScreen() {
@@ -146,13 +186,30 @@ function increasePoints() {
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
   if (isDraw() == false) {
     if (currentClass == X_CLASS) {
-      scoreX = scoreX + 1;
+      scoreX++;
     } else {
-      scoreO = scoreO + 1;
+      scoreO++;
     }
   }
   playerOneScoreHTML.innerText = scoreX;
   playerTwoScoreHTML.innerText = scoreO;
+}
+
+function turnDisplay() {
+  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
+  if (isDraw() == false) {
+    if (currentClass == X_CLASS) {
+      turn.checked = false;
+    } else {
+      turn.checked = true;
+    }
+  }
+}
+
+function turnWaitDisplay(tick) {
+  setInterval(() => {
+    turnDisplay()
+  }, tick);
 }
 
 document.addEventListener('keyup', (event) => {
@@ -160,3 +217,5 @@ document.addEventListener('keyup', (event) => {
     toggleClass();
   }
 }, false);
+
+turn.disabled = true;
