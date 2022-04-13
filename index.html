@@ -9,7 +9,7 @@
   <script src="https://kit.fontawesome.com/65a220e4e7.js" crossorigin="anonymous"></script>
   <title>Tic-Tac-Toe</title>
 </head>
-<body class="">
+<body>
     <section id="sec-2">
         <div class="toggleClass" onclick="toggleClass()" id="toggleClass"></div>
             <div class="scoreboard">
@@ -17,6 +17,12 @@
                 <div class="playerTwo" id="playerTwo">Player Two</div>
                 <div class="playerOneScore" id="playerOneScore">0</div>
                 <div class="playerTwoScore" id="playerTwoScore">0</div>
+            </div>
+            <label class="turnChooser">
+                <input type="checkbox" class="turn" id="turn" style="display: none;">
+                    <span class="turnSide"></span>
+                </input>
+            </label>
             </div>
             <div class="board" id="board">
                 <div class="cell" data-cell></div>
@@ -29,14 +35,16 @@
                 <div class="cell" data-cell></div>
                 <div class="cell" data-cell></div>
             </div>
-                <input value="Restart Game" type="submit" onclick="restartGame()" class="restart"></input>
+                <input value="Restart Game" type="submit" onclick="restartGame()" class="restart" id="restart"></input>
+                <input value="Clear Board" type="submit" onclick="clearBoard()"class="clearBoard" id="clearBoard"></input>
             <div class="winning-message" id="winningMessage">
                 <div data-winning-message-text></div>
-                <button id="restartButton" onclick="increasePoints()">Restart</button>
+                <button id="restartButton">Restart</button>
             </div>
     </section>
     <section id="sec-1" class="sec-1">
         <div class="startScreen show" id="startScreen">
+            <div class="logo">Tic-Tac-Toe</div>
             <div class="name">
                 <input type="secondPlayer" placeholder="Player One (X)" class="username playerOneInput" id="playerOneInput" maxlength="10" autocomplete="false">
                 <p id="playerOneInputReq" class="playerOneInputReq"></p>
